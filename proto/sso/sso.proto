@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package girls;
+package auth;
 
 option go_package = "sso/gen/go;ssov1";
 
@@ -21,8 +21,9 @@ message LoginResponse {
 }
 
 message RegisterRequest {
-  string email = 1; // Email of the user to register.
-  string password = 2; // Password of the user to register.
+  string username = 1; // Name of the user to register.
+  string email = 2; // Email of the user to register.
+  string password = 3; // Password of the user to register.
 }
 
 message RegisterResponse {
