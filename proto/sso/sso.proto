@@ -31,7 +31,7 @@ message RegisterResponse {
 }
 
 message LogoutRequest {
-  string username = 1; // Username of the user to logout.
+  string login = 1; // Login of the user to logout.
   string token = 2; // Auth token of the user to logout.
 }
 
