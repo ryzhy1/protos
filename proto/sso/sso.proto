@@ -1,14 +1,21 @@
 syntax = "proto3";
 
-package auth;
+package ssov1;
 
 option go_package = "sso/gen/go;ssov1";
 
+service AccountService {
+  // Auth methods
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
 
-service AuthService {
-  rpc Login (LoginRequest) returns (LoginResponse);
-  rpc Register (RegisterRequest) returns (RegisterResponse);
-  rpc Logout (LogoutRequest) returns (LogoutResponse);
+  // Account management methods
+  rpc CreatePurchase(CreatePurchaseRequest) returns (CreatePurchaseResponse);
+  rpc UpdateBalance(UpdateBalanceRequest) returns (UpdateBalanceResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse);
+  rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse);
 }
 
 message LoginRequest {
@@ -31,10 +38,70 @@ message RegisterResponse {
 }
 
 message LogoutRequest {
-  string login = 1; // Login of the user to logout.
-  string token = 2; // Auth token of the user to logout.
+  string token = 1; // Auth token of the user to logout.
 }
 
 message LogoutResponse {
   bool success = 1; // Indicates whether the logout was successful.
+}
+
+message CreatePurchaseRequest {
+  int32 user_id = 1;  // User ID of the user making the purchase.
+  Tarif tarif = 2;    // Tarif of the purchase.
+  string channel = 3; // Channel of the purchase.
+  int32 interval = 4; // Interval of the purchase.
+  string comment = 5; // Comment of the purchase.
+}
+
+message CreatePurchaseResponse {
+  string status = 1;  // Status of the purchase.
+  string message = 2; // Message of the purchase.
+}
+
+message UpdateBalanceRequest {
+  int32 user_id = 1;  // User ID of the user making the purchase.
+  float amount = 2;   // Amount of the balance update.
+}
+
+message UpdateBalanceResponse {
+  string status = 1;  // Status of the balance update.
+}
+
+message GetUserRequest {
+  int32 user_id = 1;  // User ID of the user to get.
+}
+
+message GetUserResponse {
+  int32 user_id = 1;  // User ID of the user.
+  string username = 2;  // Username of the user.
+  string email = 3;  // Email of the user.
+  float balance = 4;  // Balance of the user.
+  string created_at = 5;  // Created at timestamp of the user.
+}
+
+message UpdateEmailRequest {
+  int32 user_id = 1;  // User ID of the user making the purchase.
+  string new_email = 2;  // New email of the user.
+}
+
+message UpdateEmailResponse {
+  string status = 1;  // Status of the email update.
+  string message = 2; // Message of the email update.
+}
+
+message UpdatePasswordRequest {
+  int32 user_id = 1;  // User ID of the user making the purchase.
+  string old_password = 2;  // Old password of the user.
+  string new_password = 3;  // New password of the user.
+}
+
+message UpdatePasswordResponse {
+  string status = 1;  // Status of the password update.
+  string message = 2; // Message of the password update.
+}
+
+message Tarif {
+  int32 id = 1; // Tarif ID.
+  int32 quantity = 2; // Quantity of the tarif.
+  int32 duration = 3; // Duration of the tarif.
 }
