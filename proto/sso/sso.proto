@@ -5,17 +5,17 @@ package ssov1;
 option go_package = "sso/gen/go;ssov1";
 
 service AccountService {
-  // Auth methods
-  rpc Login(LoginRequest) returns (LoginResponse);
-  rpc Register(RegisterRequest) returns (RegisterResponse);
-  rpc Logout(LogoutRequest) returns (LogoutResponse);
-
-  // Account management methods
   rpc CreatePurchase(CreatePurchaseRequest) returns (CreatePurchaseResponse);
   rpc UpdateBalance(UpdateBalanceRequest) returns (UpdateBalanceResponse);
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse);
   rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse);
+}
+
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
 }
 
 message LoginRequest {
