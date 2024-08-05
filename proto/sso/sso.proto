@@ -9,7 +9,11 @@ option go_package = "sso/gen/go;ssov1";
 service AccountService {
   rpc CreatePurchase(CreatePurchaseRequest) returns (CreatePurchaseResponse);
   rpc UpdateBalance(UpdateBalanceRequest) returns (UpdateBalanceResponse);
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/users/{user_id}"
+    };
+  };
   rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse);
   rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse);
 }
@@ -79,7 +83,7 @@ message GetUserRequest {
 }
 
 message GetUserResponse {
-  int32 user_id = 1;  // User ID of the user.
+  string user_id = 1;  // User ID of the user.
   string username = 2;  // Username of the user.
   string email = 3;  // Email of the user.
   float balance = 4;  // Balance of the user.
