@@ -87,7 +87,7 @@ message LogoutResponse {
 }
 
 message CreatePurchaseRequest {
-  string user_id = 1;  // User ID of the user making the purchase.
+  string username = 1;  // User ID of the user making the purchase.
   Tarif tarif = 2;    // Tarif of the purchase.
   string channel = 3; // Channel of the purchase.
   int32 interval = 4; // Interval of the purchase.
@@ -100,7 +100,7 @@ message CreatePurchaseResponse {
 }
 
 message UpdateBalanceRequest {
-  string user_id = 1;  // User ID of the user making the purchase.
+  string username = 1;  // User ID of the user making the purchase.
   float amount = 2;   // Amount of the balance update.
 }
 
@@ -120,7 +120,7 @@ message GetUserResponse {
 }
 
 message UpdateEmailRequest {
-  string user_id = 1;  // User ID of the user making the purchase.
+  string username = 1;  // username of the user making the purchase.
   string old_email = 2;  // Old email of the user.
   string new_email = 3;  // New email of the user.
 }
@@ -131,7 +131,7 @@ message UpdateEmailResponse {
 }
 
 message UpdatePasswordRequest {
-  string user_id = 1;  // User ID of the user making the purchase.
+  string username = 1;  // User ID of the user making the purchase.
   string old_password = 2;  // Old password of the user.
   string new_password = 3;  // New password of the user.
 }
