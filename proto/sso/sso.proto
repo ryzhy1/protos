@@ -21,7 +21,7 @@ service AccountService {
   };
   rpc GetUserByID(GetUserRequest) returns (GetUserResponse) {
     option (google.api.http) = {
-      get: "/users/{user_id}"
+      get: "/users/{username}"
     };
   };
   rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse) {
@@ -109,15 +109,14 @@ message UpdateBalanceResponse {
 }
 
 message GetUserRequest {
-  string user_id = 1;  // User ID of the user to get.
+  string username = 1;  // User ID of the user to get.
 }
 
 message GetUserResponse {
-  string user_id = 1;  // User ID of the user.
-  string username = 2;  // Username of the user.
-  string email = 3;  // Email of the user.
-  float balance = 4;  // Balance of the user.
-  string created_at = 5;  // Created at timestamp of the user.
+  string username = 1;  // Username of the user.
+  string email = 2;  // Email of the user.
+  float balance = 3;  // Balance of the user.
+  int32 discount = 4;  // Discount of the user.
 }
 
 message UpdateEmailRequest {

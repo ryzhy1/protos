@@ -94,14 +94,14 @@ func request_AccountService_GetUserByID_0(ctx context.Context, marshaler runtime
 		_   = err
 	)
 
-	val, ok = pathParams["user_id"]
+	val, ok = pathParams["username"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "username")
 	}
 
-	protoReq.UserId, err = runtime.String(val)
+	protoReq.Username, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "username", err)
 	}
 
 	msg, err := client.GetUserByID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -120,14 +120,14 @@ func local_request_AccountService_GetUserByID_0(ctx context.Context, marshaler r
 		_   = err
 	)
 
-	val, ok = pathParams["user_id"]
+	val, ok = pathParams["username"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "username")
 	}
 
-	protoReq.UserId, err = runtime.String(val)
+	protoReq.Username, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "username", err)
 	}
 
 	msg, err := server.GetUserByID(ctx, &protoReq)
@@ -330,7 +330,7 @@ func RegisterAccountServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/ssov1.AccountService/GetUserByID", runtime.WithHTTPPathPattern("/users/{user_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/ssov1.AccountService/GetUserByID", runtime.WithHTTPPathPattern("/users/{username}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -573,7 +573,7 @@ func RegisterAccountServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/ssov1.AccountService/GetUserByID", runtime.WithHTTPPathPattern("/users/{user_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/ssov1.AccountService/GetUserByID", runtime.WithHTTPPathPattern("/users/{username}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -641,7 +641,7 @@ var (
 
 	pattern_AccountService_UpdateBalance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"balance"}, ""))
 
-	pattern_AccountService_GetUserByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"users", "user_id"}, ""))
+	pattern_AccountService_GetUserByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"users", "username"}, ""))
 
 	pattern_AccountService_UpdateEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"email"}, ""))
 
