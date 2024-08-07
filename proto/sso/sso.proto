@@ -26,13 +26,13 @@ service AccountService {
   };
   rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse) {
     option (google.api.http) = {
-      post: "/email"
+      patch: "/email"
       body: "*"
     };
   };
   rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {
     option (google.api.http) = {
-      post: "/password"
+      patch: "/password"
       body: "*"
     };
   };
