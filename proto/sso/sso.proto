@@ -113,15 +113,16 @@ message GetUserRequest {
 }
 
 message GetUserResponse {
-  string username = 1;  // Username of the user.
-  string email = 2;  // Email of the user.
-  float balance = 3;  // Balance of the user.
-  int32 discount = 4;  // Discount of the user.
+  string username = 2;  // Username of the user.
+  string email = 3;  // Email of the user.
+  float balance = 4;  // Balance of the user.
+  int32 discount = 5;  // Discount of the user.
 }
 
 message UpdateEmailRequest {
   string user_id = 1;  // User ID of the user making the purchase.
-  string new_email = 2;  // New email of the user.
+  string old_email = 2;  // Old email of the user.
+  string new_email = 3;  // New email of the user.
 }
 
 message UpdateEmailResponse {
