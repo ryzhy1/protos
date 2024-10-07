@@ -6,143 +6,52 @@ import "google/api/annotations.proto";
 
 option go_package = "sso/gen/go;ssov1";
 
-service AccountService {
-  rpc CreatePurchase(CreatePurchaseRequest) returns (CreatePurchaseResponse) {
-    option (google.api.http) = {
-      post: "/create-purchase"
-      body: "*"
-    };
-  };
-  rpc UpdateBalance(UpdateBalanceRequest) returns (UpdateBalanceResponse) {
-    option (google.api.http) = {
-      post: "/balance"
-      body: "*"
-    };
-  };
-  rpc GetUserByID(GetUserRequest) returns (GetUserResponse) {
-    option (google.api.http) = {
-      get: "/users/{username}"
-    };
-  };
-  rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse) {
-    option (google.api.http) = {
-      patch: "/email"
-      body: "*"
-    };
-  };
-  rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {
-    option (google.api.http) = {
-      patch: "/password"
-      body: "*"
-    };
-  };
-}
-
 service AuthService {
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/login"
       body: "*"
     };
-  };
+  }
+
   rpc Register(RegisterRequest) returns (RegisterResponse) {
     option (google.api.http) = {
       post: "/register"
       body: "*"
     };
-  };
+  }
+
   rpc Logout(LogoutRequest) returns (LogoutResponse) {
     option (google.api.http) = {
       post: "/logout"
       body: "*"
     };
-  };
+  }
 }
 
 message LoginRequest {
-  string email = 1; // Email of the user to login.
-  string password = 2; // Password of the user to login.
+  string email = 1;      // Email of the user to login.
+  string password = 2;   // Password of the user to login.
 }
 
 message LoginResponse {
-  string token = 1; // Auth token of the logged in user.
+  string access_token = 1;   // Auth access token of the logged in user.
+  string refresh_token = 2;  // Refresh token for session renewal.
 }
 
 message RegisterRequest {
-  string login = 1; // login of the user to register.
-  string email = 2; // Email of the user to register.
-  string password = 3; // Password of the user to register.
+  string email = 1;      // Email of the user to register.
+  string password = 2;   // Password of the user to register.
 }
 
 message RegisterResponse {
-  string user_id = 1; // User ID of the registered user.
+  string user_id = 1;    // User ID (UUID) of the registered user.
 }
 
 message LogoutRequest {
-  string token = 1; // Auth token of the user to logout.
+  string access_token = 1; // Auth access token of the user to logout.
 }
 
 message LogoutResponse {
-  bool success = 1; // Indicates whether the logout was successful.
-}
-
-message CreatePurchaseRequest {
-  string username = 1;  // User ID of the user making the purchase.
-  Tarif tarif = 2;    // Tarif of the purchase.
-  string channel = 3; // Channel of the purchase.
-  int32 interval = 4; // Interval of the purchase.
-  string comment = 5; // Comment of the purchase.
-}
-
-message CreatePurchaseResponse {
-  string status = 1;  // Status of the purchase.
-  string message = 2; // Message of the purchase.
-}
-
-message UpdateBalanceRequest {
-  string username = 1;  // User ID of the user making the purchase.
-  float amount = 2;   // Amount of the balance update.
-}
-
-message UpdateBalanceResponse {
-  string status = 1;  // Status of the balance update.
-}
-
-message GetUserRequest {
-  string username = 1;  // User ID of the user to get.
-}
-
-message GetUserResponse {
-  string username = 2;  // Username of the user.
-  string email = 3;  // Email of the user.
-  float balance = 4;  // Balance of the user.
-  int32 discount = 5;  // Discount of the user.
-}
-
-message UpdateEmailRequest {
-  string username = 1;  // username of the user making the purchase.
-  string old_email = 2;  // Old email of the user.
-  string new_email = 3;  // New email of the user.
-}
-
-message UpdateEmailResponse {
-  string status = 1;  // Status of the email update.
-  string message = 2; // Message of the email update.
-}
-
-message UpdatePasswordRequest {
-  string username = 1;  // User ID of the user making the purchase.
-  string old_password = 2;  // Old password of the user.
-  string new_password = 3;  // New password of the user.
-}
-
-message UpdatePasswordResponse {
-  string status = 1;  // Status of the password update.
-  string message = 2; // Message of the password update.
-}
-
-message Tarif {
-  string id = 1; // Tarif ID.
-  int32 quantity = 2; // Quantity of the tarif.
-  int32 duration = 3; // Duration of the tarif.
+  bool success = 1;      // Indicates whether the logout was successful.
 }
