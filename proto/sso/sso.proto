@@ -30,8 +30,8 @@ service AuthService {
 }
 
 message LoginRequest {
-  string email = 1;      // Email of the user to login.
-  string password = 2;   // Password of the user to login.
+  string input = 1; // Email of the user to login.
+  string password = 2; // Password of the user to login.
 }
 
 message LoginResponse {
@@ -40,8 +40,9 @@ message LoginResponse {
 }
 
 message RegisterRequest {
-  string email = 1;      // Email of the user to register.
-  string password = 2;   // Password of the user to register.
+  string login = 1; // Login of the user to register.
+  string email = 2; // Email of the user to register.
+  string password = 3; // Password of the user to register.
 }
 
 message RegisterResponse {

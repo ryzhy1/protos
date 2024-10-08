@@ -1,4 +1,5 @@
 .idea/
+.idea/material_theme_project_new.xml
 .DS_Store
 .vendor.protogen/
 .bin/
