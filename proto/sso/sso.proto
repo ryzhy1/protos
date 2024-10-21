@@ -41,7 +41,8 @@ message LoginResponse {
 
 message RegisterRequest {
   string email = 1;      // Email of the user to register.
-  string password = 2;   // Password of the user to register.
+  string username = 2;   // Username of the user to register.
+  string password = 3;   // Password of the user to register.
 }
 
 message RegisterResponse {
