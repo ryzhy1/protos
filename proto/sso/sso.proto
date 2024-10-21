@@ -30,7 +30,7 @@ service AuthService {
 }
 
 message LoginRequest {
-  string email = 1;      // Email of the user to login.
+  string input = 1;      // Input of the user to login.
   string password = 2;   // Password of the user to login.
 }
 
