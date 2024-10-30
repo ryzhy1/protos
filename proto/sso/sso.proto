@@ -20,13 +20,6 @@ service AuthService {
       body: "*"
     };
   }
-
-  rpc Logout(LogoutRequest) returns (LogoutResponse) {
-    option (google.api.http) = {
-      post: "/logout"
-      body: "*"
-    };
-  }
 }
 
 message LoginRequest {
@@ -47,12 +40,4 @@ message RegisterRequest {
 
 message RegisterResponse {
   string user_id = 1;    // User ID (UUID) of the registered user.
-}
-
-message LogoutRequest {
-  string access_token = 1; // Auth access token of the user to logout.
-}
-
-message LogoutResponse {
-  bool success = 1;      // Indicates whether the logout was successful.
 }
