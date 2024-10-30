@@ -20,6 +20,10 @@ service AuthService {
       body: "*"
     };
   }
+
+  rpc UpdateEmail(EmailRequest) returns (UpdateResponse);
+
+  rpc UpdatePassword(PasswordRequest) returns (UpdateResponse);
 }
 
 message LoginRequest {
@@ -40,4 +44,20 @@ message RegisterRequest {
 
 message RegisterResponse {
   string user_id = 1;    // User ID (UUID) of the registered user.
+}
+
+message EmailRequest {
+  string user_id = 1;
+  string old_password = 2;
+  string new_password = 3;
+}
+
+message PasswordRequest {
+  string user_id = 1;
+  string old_password = 2;
+  string new_password = 3;
+}
+
+message UpdateResponse {
+  string message = 1;
 }
