@@ -48,8 +48,8 @@ message RegisterResponse {
 
 message EmailRequest {
   string user_id = 1;
-  string old_password = 2;
-  string new_password = 3;
+  string old_email = 2;
+  string new_email = 3;
 }
 
 message PasswordRequest {
